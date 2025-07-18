@@ -15,12 +15,23 @@ import pytesseract as tess
 tess.pytesseract.tesseract_cmd = r"C:\Users\u375297\AppData\Local\Programs\Tesseract-OCR\tesseract.exe"
 from PIL import Image
 from spellchecker import SpellChecker
-
+import pytesseract
+from PIL import Image
+from tkinter import Tk, filedialog
 # img = Image.open("2020-12-28 15_37_10-Data Scrape – TryTesseract.py.png")
 
+# Hide the root window
+root = Tk()
+root.withdraw()
 
-img = Image.open(r"Data/Image/2022-01-13 15_35_34-Miro.png")
-text = tess.image_to_string(img)
+# Open a file dialog to select an image file
+file_path = filedialog.askopenfilename(
+    title="Select an Image File",
+    filetypes=[("Image Files", "*.png;*.jpg;*.jpeg;*.bmp;*.tiff")]
+)
+
+image = Image.open(file_path)
+text = tess.image_to_string(image)
 
 print(text)
 #
